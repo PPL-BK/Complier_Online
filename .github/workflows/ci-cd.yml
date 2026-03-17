@@ -1,0 +1,20 @@
+name: CI-CD Compiler
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run docker tests
+        run: |
+          docker compose build
+          docker compose run --rm test
